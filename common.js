@@ -32,26 +32,31 @@ var utils = (function() {
 })();
  
 /**
- * "Zen" mode (IE: 10+)
+ * Zen mode
+ * ========
+ * Shortcuts to toggle:
+ *  - alt+z
+ *  - ,z (a la Vim)
  **/
-var html        = document.getElementsByTagName('html')[0],
-    zenShortcuts = ['alt+z', /* a la Vim: */ ', z'];
+var $html        = $('html'),
+    zenShortcuts = ['alt+z', ', z'];
  
 Mousetrap.bind(zenShortcuts, function toggleZenMode() {
-  html.classList.toggle('zen');
-  utils.sessionSet('zen', html.classList.contains('zen'));
+  $html.toggleClass('zen');
+  utils.sessionSet('zen', $html.hasClass('zen'));
 });
  
 if (utils.sessionGet('zen') == 'true') {
-  html.classList.add('zen');
+  $html.addClass('zen');
 }
  
 /**
  * Vim-like Keyboard Shortcuts
+ * - gg: go to the top of the page
+ * - G:  go to the bottom of the page
  **/
 var $win = $(window),
     $doc = $(document);
- 
  
 Mousetrap.bind('g g',     function() { $win.scrollTop(0); });
 Mousetrap.bind('shift+g', function() { $win.scrollTop($doc.height()); });

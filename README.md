@@ -1,9 +1,5 @@
 Here are some tools I use to improve my experience on Wikipedia.
 
-Note that because I use only the latest versions of modern desktop browsers,
-I don’t care of the support of IE \<10 and old versions of other browsers. This
-may change in the future.
-
 ## Features
 
 ### Keyboard shortcuts
@@ -33,6 +29,8 @@ pages if you use Wikipedia in other languages.
 ## Changelog
 
 ### v0.1.1 (upcoming)
+
+- Support for IE 10 and older browsers
 
 ### v0.1.0 (15/sept/2013)
 
