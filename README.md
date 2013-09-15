@@ -25,16 +25,3 @@ pages if you use Wikipedia in other languages.
 ## License
 
 [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/)
-
-## Changelog
-
-### v0.1.1 (upcoming)
-
-- Support for IE 10 and older browsers
-
-### v0.1.0 (15/sept/2013)
-
-First version.
-
-- Zen mode
-- `gg` and `G` Vim-like keyboard shortcuts
