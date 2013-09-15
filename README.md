@@ -24,7 +24,7 @@ You need a Wikipedia account.
 [wkjs]:  https://en.wikipedia.org/wiki/Special:MyPage/common.js
 
 Unfortunately, it only works in one language, so you’ll need to re-create these
-pages in other languages.
+pages if you use Wikipedia in other languages.
 
 ## License
 
@@ -32,9 +32,11 @@ pages in other languages.
 
 ## Changelog
 
-### v0.1.0
+### v0.1.1 (upcoming)
 
-First version
+### v0.1.0 (15/sept/2013)
+
+First version.
 
 - Zen mode
 - `gg` and `G` Vim-like keyboard shortcuts
