@@ -13,19 +13,19 @@ b[d[e].seq]=1,x(d[e].callback,c,d[e].combo)):g||x(d[e].callback,c,d[e].combo);d=
 /**
  * utils
  **/
-var okhjon = (function() {
+var utils = (function() {
   var o           = {},
       noop        = function(){},
       hasSStorage = (window.sessionStorage && typeof sessionStorage.getItem == 'function');
  
   // set an item in a session-persistent storage if it's available
   o.sessionSet = !hasSStorage ? noop : function(k, v) {
-    sessionStorage.setItem("okhjon." + k, v);
+    sessionStorage.setItem("wktools." + k, v);
   };
  
   // get an item from a session-persistent storage if it's available
   o.sessionGet = !hasSStorage ? noop : function(k) {
-    return sessionStorage.getItem("okhjon." + k);
+    return sessionStorage.getItem("wktools." + k);
   };
  
   return o;
@@ -39,10 +39,10 @@ var html        = document.getElementsByTagName('html')[0],
  
 Mousetrap.bind(zenShortcuts, function toggleZenMode() {
   html.classList.toggle('zen');
-  okhjon.sessionSet('zen', html.classList.contains('zen'));
+  utils.sessionSet('zen', html.classList.contains('zen'));
 });
  
-if (okhjon.sessionGet('zen') == 'true') {
+if (utils.sessionGet('zen') == 'true') {
   html.classList.add('zen');
 }
  
