@@ -1,0 +1,15 @@
+/**
+ * "Zen" mode (toggled via JS)
+ **/
+html.zen #mw-navigation,
+html.zen #mw-head-base,
+html.zen #mw-page-base,
+html.zen #footer,
+html.zen #coordinates-title {
+	display: none;
+}
+ 
+html.zen div#content {
+	margin-left: 0;
+	font-size: 1.2em !important;
+}
