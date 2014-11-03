@@ -5,9 +5,10 @@ Here are some tools I use to improve my experience on Wikipedia.
 ### Keyboard shortcuts
 
 - `alt+z`: toggle Zen mode (nav bars, headers and footer hidden, larger
-  font-size)
+  font-size). Aliased as `,z` (Vim-style)
 - `gg`: go to the top of the page
 - `G`: go to the bottom of the page
+- `/`: focus on the search box
 
 ## Install
 

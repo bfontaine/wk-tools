@@ -1,5 +1,6 @@
-;!function(){
- 
+(function(){
+
+/* jshint ignore:start */
 /* mousetrap v1.4.5 craig.is/killing/mice */
 (function(J,r,f){function s(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent("on"+b,c)}function A(a){if("keypress"==a.type){var b=String.fromCharCode(a.which);a.shiftKey||(b=b.toLowerCase());return b}return h[a.which]?h[a.which]:B[a.which]?B[a.which]:String.fromCharCode(a.which).toLowerCase()}function t(a){a=a||{};var b=!1,c;for(c in n)a[c]?b=!0:n[c]=0;b||(u=!1)}function C(a,b,c,d,e,v){var g,k,f=[],h=c.type;if(!l[a])return[];"keyup"==h&&w(a)&&(b=[a]);for(g=0;g<l[a].length;++g)if(k=
 l[a][g],!(!d&&k.seq&&n[k.seq]!=k.level||h!=k.action||("keypress"!=h||c.metaKey||c.ctrlKey)&&b.sort().join(",")!==k.modifiers.sort().join(","))){var m=d&&k.seq==d&&k.level==v;(!d&&k.combo==e||m)&&l[a].splice(g,1);f.push(k)}return f}function K(a){var b=[];a.shiftKey&&b.push("shift");a.altKey&&b.push("alt");a.ctrlKey&&b.push("ctrl");a.metaKey&&b.push("meta");return b}function x(a,b,c){m.stopCallback(b,b.target||b.srcElement,c)||!1!==a(b,c)||(b.preventDefault&&b.preventDefault(),b.stopPropagation&&b.stopPropagation(),
@@ -9,28 +10,13 @@ d,a,e),l[c.key][d?"unshift":"push"]({callback:b,modifiers:c.modifiers,action:c.a
 "@":"2","#":"3",$:"4","%":"5","^":"6","&":"7","*":"8","(":"9",")":"0",_:"-","+":"=",":":";",'"':"'","<":",",">":".","?":"/","|":"\\"},G={option:"alt",command:"meta","return":"enter",escape:"esc",mod:/Mac|iPod|iPhone|iPad/.test(navigator.platform)?"meta":"ctrl"},p,l={},q={},n={},D,z=!1,I=!1,u=!1;for(f=1;20>f;++f)h[111+f]="f"+f;for(f=0;9>=f;++f)h[f+96]=f;s(r,"keypress",y);s(r,"keydown",y);s(r,"keyup",y);var m={bind:function(a,b,c){a=a instanceof Array?a:[a];for(var d=0;d<a.length;++d)F(a[d],b,c);return this},
 unbind:function(a,b){return m.bind(a,function(){},b)},trigger:function(a,b){if(q[a+":"+b])q[a+":"+b]({},a);return this},reset:function(){l={};q={};return this},stopCallback:function(a,b){return-1<(" "+b.className+" ").indexOf(" mousetrap ")?!1:"INPUT"==b.tagName||"SELECT"==b.tagName||"TEXTAREA"==b.tagName||b.isContentEditable},handleKey:function(a,b,c){var d=C(a,b,c),e;b={};var f=0,g=!1;for(e=0;e<d.length;++e)d[e].seq&&(f=Math.max(f,d[e].level));for(e=0;e<d.length;++e)d[e].seq?d[e].level==f&&(g=!0,
 b[d[e].seq]=1,x(d[e].callback,c,d[e].combo)):g||x(d[e].callback,c,d[e].combo);d="keypress"==c.type&&I;c.type!=u||w(a)||d||t(b);I=g&&"keydown"==c.type}};J.Mousetrap=m;"function"===typeof define&&define.amd&&define(m)})(window,document);
- 
-/**
- * utils
- **/
-var utils = (function() {
-  var o           = {},
-      noop        = function(){},
-      hasSStorage = (window.sessionStorage && typeof sessionStorage.getItem == 'function');
- 
-  // set an item in a session-persistent storage if it's available
-  o.sessionSet = !hasSStorage ? noop : function(k, v) {
-    sessionStorage.setItem("wktools." + k, v);
-  };
- 
-  // get an item from a session-persistent storage if it's available
-  o.sessionGet = !hasSStorage ? noop : function(k) {
-    return sessionStorage.getItem("wktools." + k);
-  };
- 
-  return o;
-})();
- 
+/* jshint ignore:end */
+
+var $win = $(window),
+    $doc = $(document),
+    $html = $('html'),
+    $search = $('#searchInput');
+
 /**
  * Zen mode
  * ========
@@ -38,27 +24,19 @@ var utils = (function() {
  *  - alt+z
  *  - ,z (a la Vim)
  **/
-var $html        = $('html'),
-    zenShortcuts = ['alt+z', ', z'];
- 
-Mousetrap.bind(zenShortcuts, function toggleZenMode() {
+Mousetrap.bind(['alt+z', ', z'], function toggleZenMode() {
   $html.toggleClass('zen');
-  utils.sessionSet('zen', $html.hasClass('zen'));
 });
- 
-if (utils.sessionGet('zen') == 'true') {
-  $html.addClass('zen');
-}
- 
+
 /**
  * Vim-like Keyboard Shortcuts
  * - gg: go to the top of the page
  * - G:  go to the bottom of the page
+ * - /:  focus on the search bar
  **/
-var $win = $(window),
-    $doc = $(document);
- 
-Mousetrap.bind('g g',     function() { $win.scrollTop(0); });
-Mousetrap.bind('shift+g', function() { $win.scrollTop($doc.height()); });
- 
-}();
+Mousetrap.bind('g g',     function() { $win.scrollTop(0); })
+         .bind('shift+g', function() { $win.scrollTop($doc.height()); })
+         .bind('/',       function(e) { e.preventDefault(); $search.focus(); })
+         ;
+
+})();
